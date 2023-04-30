@@ -4,8 +4,6 @@ import { useState } from 'react';
 import FullCalendar from '@fullcalendar/react' ;
 import timeGridPlugin from '@fullcalendar/timegrid';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-const widthRef = useRef(window.innerWidth);
-
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { useContext } from 'react';
@@ -29,7 +27,8 @@ export default function Calendario(){
   const [wednesday, setWednesday] = useState(false);
   const [thursday, setThursday] = useState(false);
   const [friday, setFriday] = useState(false);
-  const [saturday, setSaturday] = useState(false)
+  const [saturday, setSaturday] = useState(false);
+  const widthRef = useRef(window.innerWidth);
   const olddaysOfWeek = ['',sunday ? 0 : '',monday ? 1 : '', tuesday ? 2 : '', wednesday ? 3 : '', thursday ? 4 : '', friday ? 5 : '', saturday ? 6 : ''];
   const daysOfWeek = olddaysOfWeek.filter(day => {
     return day !== ''
