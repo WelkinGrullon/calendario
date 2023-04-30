@@ -4,6 +4,8 @@ import { useState } from 'react';
 import FullCalendar from '@fullcalendar/react' ;
 import timeGridPlugin from '@fullcalendar/timegrid';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+const widthRef = useRef(window.innerWidth);
+
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { useContext } from 'react';
@@ -143,7 +145,7 @@ export default function Calendario(){
     }}
       eventClick={handleEventClick}
       plugins={[dayGridPlugin, bootstrap5Plugin, timeGridPlugin]}
-      initialView="dayGridMonth"
+      initialView={widthRef.current < 900 ? 'timeGridDay' : 'dayGridMonth'}
       headerToolbar={{
         left: 'prev,next,myCustomButton',
         center: '',
