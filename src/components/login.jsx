@@ -14,18 +14,20 @@ export default function Login(){
     const {isLoggedIn, setIsLoggedIn, userAuthed} = useContext(userContext);
     const handleSubmit = function(e){
         e.preventDefault();
-        setLoading(false);
+        setLoading(true);
         axios.post('https://calendario-back.onrender.com/users', {email, password})
         .then(res => {
             console.log(res)
             if (res.data.status === 'error'){
                 setIfError(true);
-                setLogErrorMess(res.data.error)
+                setLogErrorMess(res.data.error);
+                setLoading(false)
             } else {
                 setIfError(false);
                 localStorage.setItem('user', JSON.stringify(res.data.result))
                 localStorage.setItem('token',res.data.token)
                 userAuthed();
+                setLoading(false)
                 navigate('/groups');
                 setIsLoggedIn(true)
                 
