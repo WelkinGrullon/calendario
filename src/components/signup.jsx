@@ -25,7 +25,7 @@ export default function Signup(){
             fName : fName,
             lName : lName,password : password
            }
-       axios.post('https://calendario-app.herokuapp.com/users/new', allData)
+       axios.post('https://calendario-back.onrender.com/users/new', allData)
        .then(data => console.log(data))
        .then((response)=> { console.log(response)
         setResult(true);setFailure(false)

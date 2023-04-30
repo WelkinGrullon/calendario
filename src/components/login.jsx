@@ -15,7 +15,7 @@ export default function Login(){
     const handleSubmit = function(e){
         e.preventDefault();
         setLoading(false);
-        axios.post('https://calendario-app.herokuapp.com/users', {email, password})
+        axios.post('https://calendario-back.onrender.com/users', {email, password})
         .then(res => {
             console.log(res)
             if (res.data.status === 'error'){

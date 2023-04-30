@@ -19,7 +19,7 @@ export default function GroupList(){
     useEffect(()=> {
             if (currentUser)
            { (currentUser.groups || []).forEach((group)=>{
-                axios.post('https://calendario-app.herokuapp.com/groups/find', {_id: group}).then(
+                axios.post('https://calendario-back.onrender.com/groups/find', {_id: group}).then(
                     (res)=>{setGroups((groups)=> [...groups, res.data]);}
                 ).catch(err => console.log(err))
             });};
@@ -33,7 +33,7 @@ export default function GroupList(){
     function createFormSubmit(e){
         e.preventDefault();
         const newGroup = {user: currentUser._id, name}
-        axios.post('https://calendario-app.herokuapp.com/groups/new', newGroup)
+        axios.post('https://calendario-back.onrender.com/groups/new', newGroup)
         .then((res)=> {
             localStorage.setItem('user',JSON.stringify(res.data));
             setCurrentuser(JSON.parse(localStorage.getItem('user')))
@@ -45,7 +45,7 @@ export default function GroupList(){
     }
     function handleAddGroup(e){
         e.preventDefault();
-        axios.post('https://calendario-app.herokuapp.com/groups/adduser', {group: addGroupId, user: currentUser._id})
+        axios.post('https://calendario-back.onrender.com/groups/adduser', {group: addGroupId, user: currentUser._id})
         .then((res)=> {
             console.log(res)
             if (res.status === 201){
@@ -62,7 +62,7 @@ export default function GroupList(){
         setShowJoinModal(false)
     };
     function  handleleaveGroup(){
-        axios.post('https://calendario-app.herokuapp.com/groups/leave', {group: leaveGroup, user: currentUser._id})
+        axios.post('https://calendario-back.onrender.com/groups/leave', {group: leaveGroup, user: currentUser._id})
         .then(res =>{
             localStorage.setItem('user',JSON.stringify(res.data));
             setCurrentuser(JSON.parse(localStorage.getItem('user')))
@@ -72,7 +72,7 @@ export default function GroupList(){
         })
     }
     function handleDeleteGroup(){
-        axios.post('https://calendario-app.herokuapp.com/groups/delete', {group: deleteGroup, user: currentUser._id })
+        axios.post('https://calendario-back.onrender.com/groups/delete', {group: deleteGroup, user: currentUser._id })
         .then(res => {
             localStorage.setItem('user', JSON.stringify(res.data));
             setCurrentuser(res.data)

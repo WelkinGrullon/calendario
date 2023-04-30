@@ -17,7 +17,7 @@ function App() {
   const [modalShow, setModalShow] = useState(false);
   const [currentUser, setCurrentuser] = useState('');
   const  userAuthed = () => {
-    axios.get('https://calendario-app.herokuapp.com/authUser', {
+    axios.get('https://calendario-back.onrender.com/authUser', {
         headers: {
             'x-access-token': localStorage.getItem('token')
         }

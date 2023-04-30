@@ -48,10 +48,10 @@ export default function Calendario(){
   const [modalHeader, setModalHeader] = useState('');
   const [theEvents, setEvents] = useState('');
   useEffect(()=>{
-    axios.post('https://calendario-app.herokuapp.com/groups/find', {_id: params.id})
+    axios.post('https://calendario-back.onrender.com/groups/find', {_id: params.id})
     .then((res)=>{
       res.data.users.forEach((user)=>{
-        axios.post('https://calendario-app.herokuapp.com/users/find', {user: user})
+        axios.post('https://calendario-back.onrender.com/users/find', {user: user})
         .then((res)=>{
           const events = res.data.events
           setEvents((oldEvents)=>[...oldEvents, ...events ]);
@@ -93,7 +93,7 @@ export default function Calendario(){
   async function handleFormSubmit(e){
     e.preventDefault();
     const alData = {title, start, allDay, display, end, description, personalNotes, author, daysOfWeek : recurring ? daysOfWeek : ''};
-    await axios.post('https://calendario-app.herokuapp.com/eventAdd', alData)
+    await axios.post('https://calendario-back.onrender.com/eventAdd', alData)
     .then(async (res) => {console.log(res);
     setEvents((events)=>[...events, alData]);
     localStorage.setItem('user', JSON.stringify(res.data))
